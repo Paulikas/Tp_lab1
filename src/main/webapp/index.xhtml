@@ -9,7 +9,7 @@
     <h2>Hotels:</h2>
     <ol>
         <ui:repeat value="#{hotels.hotels}" var="hotel">
-            <li>#{hotel.name} #{hotel.id}</li>
+            <li>#{hotel.name}</li>
                 <p>Hotel Employees
                     <ul>
                         <ui:repeat value="#{employees.loadEmployees(hotel.id)}" var="employee">
