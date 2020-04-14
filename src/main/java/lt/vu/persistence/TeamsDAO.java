@@ -28,4 +28,12 @@ public class TeamsDAO {
     public Team findOne(Integer id) {
         return em.find(Team.class, id);
     }
+
+    public void deleteOne(Integer id){
+        Team tmp_team = findOne(id);
+        em.remove(tmp_team);
+        System.out.println("Object was deleted from database: ID = " + tmp_team.getId().toString());
+    }
+
+    //public List<Team> findLike(String sample){ return em.(Team.class, sample);}
 }

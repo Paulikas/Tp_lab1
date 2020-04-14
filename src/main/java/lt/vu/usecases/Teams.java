@@ -34,6 +34,12 @@ public class Teams {
         return "index?faces-redirect=true";
     }
 
+    @Transactional
+    public String deleteTeam(Integer id){
+        this.teamsDAO.deleteOne(id);
+        return "index?faces-redirect=true";
+    }
+
     private void loadAllTeams(){
         this.allTeams = teamsDAO.loadAll();
     }

@@ -6,16 +6,51 @@
 >
 <h:head/>
 <h:body>
-    <h2>Teams:</h2>
+    <h2>Hotels:</h2>
     <ol>
-        <ui:repeat value="#{teams.allTeams}" var="team">
-            <li><h:link value="#{team.name}" outcome="players?teamId=#{team.id}" /></li>
+        <ui:repeat value="#{hotels.hotels}" var="hotel">
+            <li>#{hotel.name} #{hotel.id}</li>
+                <p>Hotel Employees
+                    <ul>
+                        <ui:repeat value="#{employees.loadEmployees(hotel.id)}" var="employee">
+                            <li>#{employee.fullName}</li>
+                        </ui:repeat>
+                    </ul>
+                </p>
+                <p>Hotel Guests
+                    <ul>
+                        <ui:repeat value="#{guests.loadGuestsByHotel(hotel.id)}" var="guest">
+                            <li>#{guest.name}</li>
+                        </ui:repeat>
+                    </ul>
+                </p>
         </ui:repeat>
     </ol>
+
+    <div><p>Hotels</p>
     <h:form>
-        <h:inputText value="#{teams.teamToCreate.name}" required="true" />
-        <h:commandButton value="Add new team" action="#{teams.createTeam}" />
+        <h:inputText value="#{hotels.hotelToCreate.name}" required="true" />
+        <h:commandButton value="Add new hotel" action="#{hotels.createHotel}" />
     </h:form>
+    </div>
+
+    <div><p>Employees</p>
+    <h:form>
+        <h:inputText value="#{employees.employeeToCreate.fullName}" required="true" />
+        <h:inputText value="#{employees.hotelId}" required="true" />
+        <h:commandButton value="Add new employee" action="#{employees.createEmployee}" />
+    </h:form>
+    </div>
+
+    <div><p>Guests</p>
+        <h:form>
+            <h:inputText value="#{guests.guestToCreate.name}" required="true" />
+            <h:inputText value="#{guests.hotelId}" required="true" />
+            <h:commandButton value="Add new guest" action="#{guests.createGuest}" />
+            <h:commandButton value="Update guest" action="#{guests.updateGuest}"/>
+        </h:form>
+    </div>
+
     <h:link outcome="myBatis/teams" value="MyBatis implementation"/>
 </h:body>
 </html>

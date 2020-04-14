@@ -16,10 +16,6 @@ import java.util.Objects;
 @Getter @Setter
 public class Team {
 
-    public Team(){
-
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
