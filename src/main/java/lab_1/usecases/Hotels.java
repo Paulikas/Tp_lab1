@@ -1,6 +1,8 @@
 package lab_1.usecases;
 
+import lab_1.entities.Guest;
 import lab_1.entities.Hotel;
+import lab_1.persistence.GuestDAO;
 import lab_1.persistence.HotelDAO;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,13 +19,19 @@ public class Hotels {
     @Inject
     private HotelDAO hotelDAO;
 
+
+
     @Getter @Setter
     private Hotel hotelToCreate = new Hotel();
 
     @Getter
     private List<Hotel> hotels;
 
+
+
     private void loadHotels(){this.hotels = hotelDAO.loadAll();}
+
+
 
     @PostConstruct
     public void init(){loadHotels();}

@@ -6,6 +6,7 @@ import lab_1.persistence.GuestDAO;
 import lab_1.persistence.HotelDAO;
 import lombok.Getter;
 import lombok.Setter;
+import sun.plugin.javascript.navig.LinkArray;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -28,8 +29,15 @@ public class Guests {
     @Getter @Setter
     private Integer hotelId=null;
 
+    @Getter
+    private List<Hotel> hotels;
+
     public List<Guest> loadGuestsByHotel(Integer hotelId){
         return guestDAO.findByHotel(hotelId);
+    }
+
+    public List<Guest> loadAllGuests(){
+        return guestDAO.loadAll();
     }
 
     @Transactional

@@ -31,6 +31,10 @@ public class GuestDAO {
         return em.merge(guest);
     }
 
+    public List<Guest> loadAll(){
+        return em.createQuery("select g from Guest as g", Guest.class).getResultList();
+    }
+
     public List<Guest> findByHotel(Integer hotelId) {
         return em.createQuery("select g from Guest as g "+
                 "join g.hotels as h "+

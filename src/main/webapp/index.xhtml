@@ -7,9 +7,14 @@
 <h:head/>
 <h:body>
     <h2>Hotels:</h2>
+    <ul>
+        <h:link value="Hotels" outcome="Hotels"/> <br/>
+        <h:link value="Guests" outcome="Guests"/> <br/>
+    </ul>
+
     <ol>
         <ui:repeat value="#{hotels.hotels}" var="hotel">
-            <li>#{hotel.name}</li>
+            <li><h:link value = "#{hotel.name}" outcome="hotelInfo?hotelId=#{hotel.id}" /></li>
                 <p>Hotel Employees
                     <ul>
                         <ui:repeat value="#{employees.loadEmployees(hotel.id)}" var="employee">
