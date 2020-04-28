@@ -42,4 +42,10 @@ public class GuestDAO {
                 .setParameter("hotel_id", hotelId)
                 .getResultList();
     }
+
+    public void deleteById(Integer id){
+        Guest guest = findOne(id);
+        em.remove(guest);
+        System.out.println("Object was deleted from database: ID = " + guest.getId().toString());
+    }
 }

@@ -27,4 +27,8 @@ public class EmployeeDAO {
                 .getResultList();
 
     }
+
+    public List<Employee> FindAll(){
+        return em.createQuery("SELECT e from Employee e").getResultList();
+    }
 }

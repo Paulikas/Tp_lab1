@@ -25,9 +25,11 @@ public class Hotel {
 
     private String location;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel",
+    cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Employee> employees = new ArrayList<>();
 
     @ManyToMany(mappedBy = "hotels")
     private List<Guest> guests = new ArrayList<>();
+
 }

@@ -4,19 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="lt.vu.mybatis.model.Team" alias="Team"/>
-        <typeAlias type="lt.vu.mybatis.model.Player" alias="Player"/>
+        <typeAlias type="lab_1.MyBatis.Model.Hotel" alias="Hotel"/>
+        <typeAlias type="lab_1.MyBatis.Model.Employee" alias="Employee"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="MANAGED"/>
             <dataSource type="JNDI">
-                <property name="data_source" value="PlayersDataSource"/>
+                <property name="data_source" value="HotelsDataSource"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis.xml/TeamMapper.xml"/>
-        <mapper resource="mybatis.xml/PlayerMapper.xml"/>
+        <mapper resource="lab_1.MyBatis/HotelMapper.xml"/>
+        <mapper resource="lab_1.MyBatis/EmployeeMapper.xml"/>
+        <mapper resource="lab_1.MyBatis/GuestMapper.xml"/>
     </mappers>
 </configuration>

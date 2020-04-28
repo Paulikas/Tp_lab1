@@ -12,12 +12,24 @@
 </head>
 <body>
     <h1> #{hotelInfo.hotel.name}</h1>
+    <h:form>
+        <h:commandButton value="Delete Hotel" action="#{hotelInfo.deleteHotel}"/>
+    </h:form>
+
+    <p>Add Employee</p>
+    <h:form>
+        <h:inputText value="#{hotelInfo.employeeToCreate.fullName}" required="true" />
+        <h:commandButton value="Add new employee" action="#{hotelInfo.createEmployee}" />
+    </h:form>
+
     <h2>Emplyees</h2>
     <ul>
         <ui:repeat value="#{hotelInfo.employees}" var="employee">
             <li>#{employee.fullName}</li>
         </ui:repeat>
     </ul>
+
+
     <h2>Guests</h2>
     <ul>
         <ui:repeat value="#{hotelInfo.guests}" var="guest">

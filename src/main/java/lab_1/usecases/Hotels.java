@@ -1,7 +1,9 @@
 package lab_1.usecases;
 
+import lab_1.entities.Employee;
 import lab_1.entities.Guest;
 import lab_1.entities.Hotel;
+import lab_1.persistence.EmployeeDAO;
 import lab_1.persistence.GuestDAO;
 import lab_1.persistence.HotelDAO;
 import lombok.Getter;
@@ -20,9 +22,9 @@ public class Hotels {
     private HotelDAO hotelDAO;
 
 
-
     @Getter @Setter
     private Hotel hotelToCreate = new Hotel();
+
 
     @Getter
     private List<Hotel> hotels;
@@ -39,6 +41,6 @@ public class Hotels {
     @Transactional
     public String createHotel(){
         this.hotelDAO.persist(hotelToCreate);
-        return "index?faces-redirect=true";
+        return "Hotels?faces-redirect=true";
     }
 }

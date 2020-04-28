@@ -13,9 +13,28 @@
 <body>
     <h1>Guests</h1>
     <ul>
-        <ui:repeat value="#{guests.loadAllGuests()}" var="guest">
-            <li><h:link value = "#{guest.name}" outcome="guestInfo?guestId=#{guest.id}"/></li>
+        <ui:repeat value="#{guests.guests}" var="guest">
+            <li>
+                <h:link value = "#{guest.name}" outcome="guestInfo?guestId=#{guest.id}"/>
+            </li>
         </ui:repeat>
     </ul>
+
+    <div><p>Manage guests</p>
+        <p>Add Guest</p>
+        <h:form>
+            <h:inputText value="#{guests.guestToCreate.name}" required="true" />
+            <h:commandButton value="Add new guest" action="#{guests.createGuest}" />
+        </h:form>
+
+        <P>Guest removal</P>
+        <h:form>
+            <h:selectOneMenu value="#{guests.guestToDeleteId}">
+                <f:selectItems value="#{guests.guests}"
+                               var = "guest" itemValue="#{guest.id}" itemLabel="#{guest.name}"/>
+            </h:selectOneMenu>
+            <h:commandButton value="Remove guest" action="#{guests.deleteGuest}" />
+        </h:form>
+    </div>
 </body>
 </html>

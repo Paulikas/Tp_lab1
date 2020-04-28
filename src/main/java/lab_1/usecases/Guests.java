@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import sun.plugin.javascript.navig.LinkArray;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -27,6 +29,12 @@ public class Guests {
     private Guest guestToCreate = new Guest();
 
     @Getter @Setter
+    private Integer guestToDeleteId;
+
+    @Getter @Setter
+    private List<Guest> guests;
+
+    @Getter @Setter
     private Integer hotelId=null;
 
     @Getter
@@ -40,23 +48,21 @@ public class Guests {
         return guestDAO.loadAll();
     }
 
-    @Transactional
-    public String createGuest(){
-        Hotel hotel = this.hotelDAO.findOne(hotelId);
-        List<Hotel> hotels = new ArrayList<>();
-        hotels.add(hotel);
-        guestToCreate.setHotels(hotels);
-        this.guestDAO.persist(guestToCreate);
-        return "index?faces-redirect=true";
+    @PostConstruct
+    private void init() {
+        guests = loadAllGuests();
     }
 
     @Transactional
-    public String updateGuest(){
-        Guest guest = this.guestDAO.findByName(guestToCreate.getName());
-        List<Hotel> hotels = guest.getHotels();
-        Hotel hotel = this.hotelDAO.findOne(hotelId);
-        hotels.add(hotel);
-        guestToCreate.setHotels(hotels);
-        return "index?faces-redirect=true";
+    public String createGuest(){
+        this.guestDAO.persist(guestToCreate);
+        return "Guests?faces-redirect=true";
+    }
+
+
+    @Transactional
+    public String deleteGuest(){
+        this.guestDAO.deleteById(guestToDeleteId);
+        return "Guests?faces-redirect=true";
     }
 }

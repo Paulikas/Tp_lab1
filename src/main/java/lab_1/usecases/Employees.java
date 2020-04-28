@@ -18,6 +18,7 @@ public class Employees {
 
     @Inject
     private EmployeeDAO empDAO;
+
     @Inject
     private HotelDAO hotelDAO;
 
@@ -30,6 +31,8 @@ public class Employees {
     public List<Employee> loadEmployees(Integer hotelId){
         return empDAO.FindByHotel(hotelId);
     }
+
+    public List<Employee> loadAllEmployees(){ return empDAO.FindAll();}
 
     @Transactional
     public String createEmployee(){

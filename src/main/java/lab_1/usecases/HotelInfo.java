@@ -11,15 +11,18 @@ import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class HotelInfo implements Serializable {
 
     @Inject
@@ -37,6 +40,9 @@ public class HotelInfo implements Serializable {
     @Getter @Setter
     private List<Employee> employees;
 
+    @Getter @Setter
+    private Employee employeeToCreate = new Employee();
+
     @PostConstruct
     public void init(){
         Map<String, String> requestParameters = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -46,13 +52,22 @@ public class HotelInfo implements Serializable {
         this.employees = hotel.getEmployees();
     }
 
-    public String doStuff(){
-        System.out.println("Susikuriau");
-        return "susikuriau";
-    }
-
     public void loadEmployees(){
         this.employees = empDAO.FindByHotel(hotel.getId());
+    }
+
+    @Transactional
+    public String createEmployee(){
+        System.out.println(employeeToCreate.getFullName());
+        employeeToCreate.setHotel(hotel);
+        this.empDAO.persist(employeeToCreate);
+        return "hotelInfo?faces-redirect=true&hotelId="+hotel.getId();
+    }
+
+    @Transactional
+    public String deleteHotel(){
+        this.hotelDAO.deleteById(hotel.getId());
+        return "Hotels?faces-redirect=true";
     }
 
 }

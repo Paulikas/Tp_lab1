@@ -12,10 +12,20 @@
 </head>
 <body>
     <ul>
-        <h2> Currently visited</h2>
+        <h1>User : #{guestInfo.guest.name}</h1>
+        <h2>Currently visited Hotels</h2>
         <ui:repeat value="#{guestInfo.hotels}" var="hotel">
             <li>#{hotel.name}</li>
         </ui:repeat>
     </ul>
+
+    <h3>Add reservation</h3>
+    <h:form>
+        <h:selectOneMenu value="#{guestInfo.hotelForUpdateId}">
+            <f:selectItems value="#{guestInfo.loadAvailableHotels()}"
+                           var = "hotel" itemValue="#{hotel.id}" itemLabel="#{hotel.name}"/>
+        </h:selectOneMenu>
+        <h:commandButton value="Add new hotel" action="#{guestInfo.addHotel}" />
+    </h:form>
 </body>
 </html>
