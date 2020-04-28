@@ -1,4 +1,4 @@
-package lt.vu.interceptors;
+package lab_1.interceptors;
 
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
