@@ -1,0 +1,10 @@
+<datasources>
+    <datasource jndi-name="HotelsDataSource" pool-name="HotelsDataSource">
+        <driver>h2</driver>
+        <connection-url>jdbc:h2:file:~/h2database/HotelsDB;AUTO_SERVER=TRUE</connection-url>
+        <security>
+            <user-name>dp</user-name>
+            <password>dp</password>
+        </security>
+    </datasource>
+</datasources>
