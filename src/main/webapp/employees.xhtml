@@ -18,12 +18,14 @@
     </ui:repeat>
 </ul>
 
-<div><p>Add Hotel</p>
-    <h:form>
-        <h:inputText value="#{hotels.hotelToCreate.name}" required="true" />
-        <h:commandButton value="Add new hotel" action="#{hotels.createHotel}" />
-    </h:form>
-</div>
+<P>Employee removal</P>
+<h:form>
+    <h:selectOneMenu value="#{employees.employeeToDeleteId}">
+        <f:selectItems value="#{employees.loadAllEmployees()}"
+                       var = "emp" itemValue="#{emp.id}" itemLabel="#{emp.fullName}"/>
+    </h:selectOneMenu>
+    <h:commandButton value="Remove guest" action="#{employees.deleteEmployee}" />
+</h:form>
 
 </body>
 </html>

@@ -13,10 +13,12 @@ import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.util.Map;
 
-@Model
+@Named
+@RequestScoped
 public class EmployeeMybatis {
 
     @Inject
@@ -40,11 +42,5 @@ public class EmployeeMybatis {
     }
     private void loadHotel(){
        this.hotel = hotelMapper.selectByPrimaryKey(employee.getHotelId());
-    }
-
-    @Transactional
-    public String deleteEmployee(){
-        employeeMapper.deleteByPrimaryKey(employee.getId());
-        return "employees?faces-redirect=true";
     }
 }
