@@ -10,4 +10,10 @@
         <class>lab_1.interceptors.MethodLogger</class>
         <class>lab_1.interceptors.EmployeeRequestPrint</class>
     </interceptors>
+    <decorators>
+        <class>lab_1.Decorators.BonusDecorator</class>
+    </decorators>
+    <alternatives>
+        <class>lab_1.usecases.SalaryCalculator.CoronaPayCalculator</class>
+    </alternatives>
 </beans>

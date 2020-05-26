@@ -19,12 +19,15 @@ public class Employee {
     @Column(name = "FULL_NAME")
     private String fullName;
 
+    @Column(name = "EMPLOYMENT_TYPE")
+    private String employmentType;
+
     @ManyToOne
     @JoinColumn(name="HOTEL_ID")
     private Hotel hotel;
 
     @Version
     @Column(name = "OPT_LOCK_VERSION")
-    private Integer veersion;
+    private Integer version;
 
 }

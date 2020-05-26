@@ -1,8 +1,8 @@
 package lab_1.usecases;
 
-import lab_1.MyBatis.Model.Employee;
-import lab_1.MyBatis.dao.EmployeeMapper;
 
+
+import lab_1.entities.Employee;
 import lab_1.entities.Hotel;
 import lab_1.persistence.EmployeeDAO;
 import lab_1.persistence.HotelDAO;
@@ -19,7 +19,7 @@ import java.util.List;
 public class Employees {
 
     @Inject
-    private EmployeeMapper employeeMapper;
+    private EmployeeDAO employeeDAO;
 
     @Inject
     private HotelDAO hotelDAO;
@@ -34,11 +34,11 @@ public class Employees {
     private Integer hotelId = null;
 
 
-    public List<Employee> loadAllEmployees(){ return employeeMapper.selectAll();}
+    public List<Employee> loadAllEmployees(){ return employeeDAO.FindAll();}
 
     @Transactional
     public String deleteEmployee(){
-        employeeMapper.deleteByPrimaryKey(this.employeeToDeleteId);
+        employeeDAO.deleteById(this.employeeToDeleteId);
         return "employees?faces-redirect=true";
     }
 }

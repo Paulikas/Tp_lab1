@@ -12,9 +12,27 @@
 </head>
 <body>
     <ul>
-        <h1>User : #{employeeMybatis.employee.fullName}</h1>
+        <h1>User : #{employeeInfo.employee.fullName}</h1>
         <h2>Currently works</h2>
-        <p>#{employeeMybatis.hotel.name}</p>
+        <p>#{employeeInfo.hotel.name}</p>
+        <h2>Employment type</h2>
+        <p>#{employeeInfo.employee.employmentType}</p>
     </ul>
+
+    <h:form>
+        <h:selectOneMenu value="#{employeeInfo.empType}">
+            <f:selectItems value="#{employeeInfo.getTypes()}"
+                           var = "type" itemValue="#{type}" itemLabel="#{type}"/>
+        </h:selectOneMenu>
+        <h:commandButton value="Add Type" action="#{employeeInfo.setEmployment}" />
+    </h:form>
+
+    <h2>Expected Salary</h2>
+    <p>#{calculateSalary.getSalaryStatus(employeeInfo.employee.id)}</p>
+    <h:form>
+        <h:commandButton value="Calculate salary" action="#{calculateSalary.calculateSalary}">
+            <f:param name="employeeId" value="#{employeeInfo.employee.id}" />
+        </h:commandButton>
+    </h:form>
 </body>
 </html>
