@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.inject.Named;
+import javax.json.bind.annotation.JsonbVisibility;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,4 +33,7 @@ public class Hotel {
     @ManyToMany(mappedBy = "hotels")
     private List<Guest> guests = new ArrayList<>();
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 }

@@ -17,11 +17,13 @@ public class Guest implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Getter @Setter
     private String name;
-
 
     @ManyToMany
     @JoinTable(name = "HOTEL_GUEST")
     private List<Hotel> hotels = new ArrayList<>();
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 }

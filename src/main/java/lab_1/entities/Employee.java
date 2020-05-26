@@ -23,4 +23,8 @@ public class Employee {
     @JoinColumn(name="HOTEL_ID")
     private Hotel hotel;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer veersion;
+
 }
