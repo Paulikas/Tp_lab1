@@ -4,6 +4,7 @@ import lab_1.REST.Requests.EmployeeRequest;
 import lab_1.REST.Responses.EmployeeResponse;
 import lab_1.entities.Employee;
 import lab_1.entities.Hotel;
+import lab_1.interceptors.RequestInter;
 import lab_1.persistence.EmployeeDAO;
 import lab_1.persistence.HotelDAO;
 
@@ -26,6 +27,7 @@ public class EmployeeRestController {
     @Inject
     private HotelDAO hotelDAO;
 
+    //@RequestInter
     @Path("/")
     @GET
     public List<EmployeeResponse> getAll(){
@@ -47,6 +49,7 @@ public class EmployeeRestController {
         return employeeResponseList;
     }
 
+    @RequestInter
     @Path("/{employeeId}")
     @GET
     public EmployeeResponse getById(@PathParam("employeeId") Integer id){
@@ -58,6 +61,7 @@ public class EmployeeRestController {
         return employeeResponse;
     }
 
+    //@RequestInter
     @Path("/{employeeId}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
@@ -81,6 +85,7 @@ public class EmployeeRestController {
         return employeeResponse;
     }
 
+    @RequestInter
     @Path("/")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

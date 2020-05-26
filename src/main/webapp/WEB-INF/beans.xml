@@ -8,5 +8,6 @@
 
     <interceptors>
         <class>lab_1.interceptors.MethodLogger</class>
+        <class>lab_1.interceptors.EmployeeRequestPrint</class>
     </interceptors>
 </beans>
