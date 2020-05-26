@@ -31,4 +31,9 @@ public class EmployeeDAO {
     public List<Employee> FindAll(){
         return em.createQuery("SELECT e from Employee e").getResultList();
     }
+
+    public void deleteById(Integer id){
+        Employee employee = findOne(id);
+        em.remove(employee);
+    }
 }
